@@ -2,7 +2,7 @@ require 'abstract_unit'
 require 'fixtures/article'
 require 'fixtures/department'
 
-class TestExists < Test::Unit::TestCase
+class TestExists < ActiveRecord::TestCase
   fixtures :articles, :departments
   
   def test_single_key_exists_giving_id

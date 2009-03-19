@@ -4,7 +4,7 @@ require 'fixtures/reference_code'
 require 'fixtures/street'
 require 'fixtures/suburb'
 
-class TestCreate < Test::Unit::TestCase
+class TestCreate < ActiveRecord::TestCase
   fixtures :reference_types, :reference_codes, :streets, :suburbs
   
   CLASSES = {
@@ -65,4 +65,13 @@ class TestCreate < Test::Unit::TestCase
     rc = ReferenceCode.find_by_reference_code(4321)
     assert_equal(rc.reference_type_id, rt.reference_type_id)
   end
+
+
+  def test_timestamps_populated
+    suburb = Suburb.new(:name => "my suburb", :city_id => 1, :suburb_id => 1000)
+    suburb.save
+    assert_not_nil suburb.created_at, "created_at was not populated on create"
+    assert_not_nil suburb.updated_at, "updated_at was not populated on create"
+  end
+
 end

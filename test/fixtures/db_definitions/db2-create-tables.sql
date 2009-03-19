@@ -39,6 +39,8 @@ CREATE TABLE suburbs (
   city_id integer NOT NULL,
   suburb_id integer NOT NULL,
   name varchar(50) NOT NULL,
+  created_at timestamp NOT NULL,
+  updated_at timestamp NOT NULL,
   PRIMARY KEY  (city_id,suburb_id)
 );
 

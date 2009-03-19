@@ -40,6 +40,8 @@ create table suburbs (
     city_id   number(11),
     suburb_id number(11),
     name      varchar2(50) not null,
+    created_at timestamp not null,
+    updated_at timestamp not null,
     constraint suburbs_pk primary key (city_id, suburb_id)
 );
 

@@ -92,10 +92,10 @@ module CompositePrimaryKeys
 
 
         private
-        # The xx_without_callbacks methods are overwritten as that is the end of the alias chain
+        # The xx_without_timestamps methods are overwritten as that is the end of the alias chain
 
         # Creates a new record with values matching those of the instance attributes.
-        def create_without_callbacks
+        def create_without_timestamps
           unless self.id
             raise CompositeKeyError, "Composite keys do not generated ids from sequences, you must provide id values"
           end
@@ -116,7 +116,7 @@ module CompositePrimaryKeys
         end
 
         # Updates the associated record with values matching those of the instance attributes.
-        def update_without_callbacks
+        def update_without_timestamps
           where_clause_terms = [self.class.primary_key, quoted_id].transpose.map do |pair| 
             "(#{connection.quote_column_name(pair[0])} = #{pair[1]})"
           end

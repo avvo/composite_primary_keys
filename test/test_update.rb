@@ -2,7 +2,7 @@ require 'abstract_unit'
 require 'fixtures/reference_type'
 require 'fixtures/reference_code'
 
-class TestUpdate < Test::Unit::TestCase
+class TestUpdate < ActiveRecord::TestCase
   fixtures :reference_types, :reference_codes
   
   CLASSES = {
@@ -37,4 +37,13 @@ class TestUpdate < Test::Unit::TestCase
       end
     end
   end
+
+  def test_timestamp_updated
+    suburb = Suburb.first
+    old_updated_at = suburb.updated_at
+    suburb.name = "New Name"
+    suburb.save
+    assert_not_equal old_updated_at, suburb.updated_at, "updated_at was not updated on update"
+  end
+
 end
